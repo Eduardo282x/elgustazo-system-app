@@ -1,4 +1,3 @@
-import React from 'react'
 import { CustomBtnMenu } from '../../components/customButtons/CustomBtnMenu'
 
 export const Menu = () => {

@@ -12,7 +12,7 @@ export const CustomBtnMenu: React.FC<CustomBtn> = ({ icon, title, redirect }) =>
     }
 
     return (
-        <Link to={redirect} className="customBtn flex items-center justify-between w-[70%] px-8 py-4 cursor-pointer bg-[#93112c] rounded-lg  transition-all duration-200 hover:bg-[#c13007]">
+        <Link to={redirect} className="customBtn flex items-center justify-between w-[70%] px-8 py-4 cursor-pointer bg-[#dc261b] rounded-lg  transition-all duration-200 hover:bg-[#ff0101]">
             <div className="flex items-center justify-start gap-5 text-3xl">
                 {setIcon(icon)}
                 {title}
