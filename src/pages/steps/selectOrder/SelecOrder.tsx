@@ -21,7 +21,7 @@ export const SelecOrder = () => {
             </IconButton>
         </div>
 
-        <div className="flex flex-wrap items-center justify-around gap-5 w-[95%] h-[40rem] overflow-y-auto py-4">
+        <div className="flex flex-wrap items-center justify-around bg-[#ebebeb] rounded-md shadow-2xl gap-5 w-[95%] h-[40rem] overflow-y-auto overflow-x-hidden py-4 px-1">
             {optionsFoods.map((element: number) => (
                 <CardFoods key={element}></CardFoods>
             ))}

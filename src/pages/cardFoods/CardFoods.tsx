@@ -4,12 +4,12 @@ import "./cardFood.css";
 
 export const CardFoods = () => {
     return (
-        <div className="flex flex-col items-center justify-between py-4 px-6 w-[15rem] h-[15rem] bg-[#ebebeb] rounded cursor-pointer relative">
+        <div className="flex flex-col items-center justify-between shadow-2xl py-4 px-6 w-[14rem] h-[14rem] bg-[#fff] rounded-xl cursor-pointer relative">
             <div className="imgFood"></div>
             
             <div className="flex flex-col items-start justify-between w-full">
                 <p className="font-bold">Hamburguesa de Pollo</p>
-                <p className="font-bold">4,00$</p>
+                <p className="font-bold text-[18px] text-[#ffdb27]">4,00$</p>
             </div>
 
             <div className="btnAdd">
