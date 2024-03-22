@@ -1,13 +1,22 @@
-import './cardFood.css';
+import { IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import "./cardFood.css";
 
 export const CardFoods = () => {
     return (
-        <div className="flex flex-col items-center justify-between py-8 px-6 w-[40%] h-[15rem] bg-gray-300 rounded-xl cursor-pointer">
+        <div className="flex flex-col items-center justify-between py-4 px-6 w-[15rem] h-[15rem] bg-[#ebebeb] rounded cursor-pointer relative">
             <div className="imgFood"></div>
-            <div className="flex items-center justify-between w-full">
-                <p>Hamburguesa de Pollo</p>
-                <p>Precio: 4,00$</p>
+            
+            <div className="flex flex-col items-start justify-between w-full">
+                <p className="font-bold">Hamburguesa de Pollo</p>
+                <p className="font-bold">4,00$</p>
+            </div>
+
+            <div className="btnAdd">
+                <IconButton>
+                    <AddIcon sx={{color: '#000'}}/>
+                </IconButton>
             </div>
         </div>
-    )
-}
+    );
+};

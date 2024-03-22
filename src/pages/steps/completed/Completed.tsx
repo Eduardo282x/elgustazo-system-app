@@ -5,7 +5,7 @@ import './completed.css'
 export const Completed = () => {
     return (
         <div className="flex flex-col items-center justify-center w-full gap-5">
-            <p className="text-[#1976d2] text-2xl">Pedido completado</p>
+            <p className="text-[#f4b726] text-2xl font-bold">Pedido completado</p>
 
             <div className="styleDone">
 

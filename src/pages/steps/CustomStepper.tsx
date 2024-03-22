@@ -1,21 +1,27 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepButton from '@mui/material/StepButton';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { SelectClient } from './selectClient/SelectClient';
-import { SelecOrder } from './selectOrder/SelecOrder';
-import { Completed } from './completed/Completed';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepButton from "@mui/material/StepButton";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { SelectClient } from "./selectClient/SelectClient";
+import { SelecOrder } from "./selectOrder/SelecOrder";
+import { Completed } from "./completed/Completed";
+import { themeYellow } from "../../components/customs/colors";
+import { ThemeProvider } from "@mui/material";
+import './customStepper.css'
+import { useNavigate } from "react-router-dom";
 
-const steps = ['Seleccionar cliente', 'Seleccionar pedido', 'Procesar'];
+const steps = ["Seleccionar cliente", "Seleccionar pedido", "Procesar"];
 
 export const CustomStepper = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
   }>({});
+
+  const navigate = useNavigate();
 
   const totalSteps = () => {
     return steps.length;
@@ -44,7 +50,12 @@ export const CustomStepper = () => {
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    console.log(activeStep);
+    if(activeStep == 0){
+      navigate('/');
+    }else {
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    }
   };
 
   const handleStep = (step: number) => () => {
@@ -64,67 +75,65 @@ export const CustomStepper = () => {
   };
 
   return (
-    <div className='w-[80%] mx-auto mt-10 bg-white p-8 rounded-xl'>
-      <Box sx={{ width: '100%' }}>
-        <Stepper nonLinear activeStep={activeStep}>
-          {steps.map((label, index) => (
-            <Step key={label} completed={completed[index]}>
-              <StepButton color="inherit" onClick={handleStep(index)}>
-                {label}
-              </StepButton>
-            </Step>
-          ))}
-        </Stepper>
-        <div>
-          {allStepsCompleted() ? (
-            <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                <Box sx={{ flex: '1 1 auto' }} />
-                <Button onClick={handleReset}>Reset</Button>
-              </Box>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
+    <div className="w-[80%] mx-auto mt-10 bg-white p-8 rounded-xl shadow-2xl border-black border-2">
+      <ThemeProvider theme={themeYellow}>
+        <Box sx={{ width: "100%" }}>
+          <Stepper nonLinear activeStep={activeStep}>
+            {steps.map((label, index) => (
+              <Step key={label} completed={completed[index]}>
+                <StepButton onClick={handleStep(index)}>
+                  {label}
+                </StepButton>
+              </Step>
+            ))}
+          </Stepper>
+          <div>
+            {allStepsCompleted() ? (
+              <React.Fragment>
+                <Typography sx={{ mt: 2, mb: 1 }}>
+                  All steps completed - you&apos;re finished
+                </Typography>
+                <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                  <Box sx={{ flex: "1 1 auto" }} />
+                  <Button onClick={handleReset}>Reset</Button>
+                </Box>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <div className="my-8">
+                  {activeStep == 0 && <SelectClient></SelectClient>}
 
-                <div className='my-8'>
-                  {activeStep == 0 && (
-                    <SelectClient></SelectClient>
-                  )}
+                  {activeStep == 1 && <SelecOrder></SelecOrder>}
 
-                  {activeStep == 1 && (
-                    <SelecOrder></SelecOrder>
-                  )}
-
-                  {activeStep == 2 && (
-                    <Completed></Completed>
-                  )}
+                  {activeStep == 2 && <Completed></Completed>}
                 </div>
 
+                <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
 
-                
-              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                {activeStep !== 0 && (
                   <Button
-                  color="primary"
-                  variant='contained'
-                  onClick={handleBack}
-                  sx={{ mr: 1 }}
-                >
-                  Volver
-                </Button>
-                )}
-                <Box sx={{ flex: '1 1 auto' }} />
-                <Button variant='contained' onClick={handleNext} sx={{ mr: 1 }}>
-                  {activeStep == 2 ? 'Completar' : 'Siguiente'}
-                </Button>
-              </Box>
-            </React.Fragment>
-          )}
-        </div>
-      </Box>
+                    color="ochre"
+                    variant="contained"
+                    onClick={handleBack}
+                    sx={{ mr: 1 }}
+                  >
+                    Volver
+                  </Button>
+                  
+                  <Box sx={{ flex: "1 1 auto" }} />
+                  <Button
+                    variant="contained"
+                    color="ochre"
+                    onClick={handleNext}
+                    sx={{ mr: 1 }}
+                  >
+                    {activeStep == 2 ? "Completar" : "Siguiente"}
+                  </Button>
+                </Box>
+              </React.Fragment>
+            )}
+          </div>
+        </Box>
+      </ThemeProvider>
     </div>
   );
-}
+};
