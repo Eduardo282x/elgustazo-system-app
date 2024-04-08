@@ -6,9 +6,6 @@ export const SelecOrder = () => {
 
     const optionsFoods: number[] = Array.from({length: 20}, (_, index) => index);
 
-    console.log(optionsFoods);
-    
-
     return (
         <div className='flex flex-col items-center justify-center w-full'>
 
@@ -21,7 +18,7 @@ export const SelecOrder = () => {
             </IconButton>
         </div>
 
-        <div className="flex flex-wrap items-center justify-around bg-[#ebebeb] rounded-md shadow-2xl gap-5 w-[95%] h-[40rem] overflow-y-auto overflow-x-hidden py-4 px-1">
+        <div className="flex flex-wrap items-center justify-around bg-[#ebebeb] rounded-md gap-5 w-[95%] h-[40rem] overflow-y-auto overflow-x-hidden py-4 px-1">
             {optionsFoods.map((element: number) => (
                 <CardFoods key={element}></CardFoods>
             ))}
